@@ -1,0 +1,38 @@
+﻿@page "/aggiungipersona"
+@using DemoBlazorApp.Client.Components
+@using DemoBlazorApp.Shared
+@using DemoBlazorApp.Shared.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>Nuova persona</h1>
+
+<p>&nbsp;</p>
+<EditForm Model="persona" OnValidSubmit="Create">
+    <div class="row">
+        <div class="col-12"><DataAnnotationsValidator />
+        <ValidationSummary /></div>
+    </div>
+    <PersonaComponent persona=@persona></PersonaComponent>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-outline-primary btn-lg ml-3">Aggiungi</button>
+            <button type="button" @onclick="@Cancel" class="btn btn-outline-secondary btn-lg ml-3">Annulla</button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    PersonaViewModel persona = new PersonaViewModel();
+
+    public void Cancel()
+    {
+        NavigationManager.NavigateTo("/fetchpersone");
+    }
+
+    private async Task Create()
+    {
+        await Http.PostAsJsonAsync<PersonaViewModel>("api/persone", persona);
+        NavigationManager.NavigateTo("/fetchpersone");
+    }
+}

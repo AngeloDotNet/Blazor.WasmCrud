@@ -1,0 +1,56 @@
+﻿@page "/fetchpersone"
+@using DemoBlazorApp.Shared.Models
+@inject HttpClient Http
+
+<h1>Rubrica</h1>
+
+<p>&nbsp;</p>
+
+@if (persone == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <p><a href="/aggiungipersona" class="btn btn-outline-primary">Nuovo</a></p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th width="20%">Cognome</th>
+                <th width="20%">Nome</th>
+                <th width="20%">Email</th>
+                <th width="20%">Telefono</th>
+                <th width="20%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in persone)
+            {
+                <tr>
+                    <td>@item.Cognome</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Email</td>
+                    <td>@item.Telefono</td>
+                    <td><a href="/dettagliopersona/@item.PersonaId" class="btn btn-outline-secondary">Dettaglio</a> 
+                        <a href="/modificapersona/@item.PersonaId" class="btn btn-outline-warning">Modifica</a> 
+                        <a href="/cancellapersona/@item.PersonaId" class="btn btn-outline-danger">Cancella</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<PersonaViewModel> persone;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadElenco();
+    }
+
+    private async Task LoadElenco()
+    {
+        persone = await Http.GetFromJsonAsync<List<PersonaViewModel>>("api/persone");
+    }
+}
