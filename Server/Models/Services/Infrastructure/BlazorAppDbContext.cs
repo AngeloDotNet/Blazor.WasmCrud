@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DemoBlazorApp.Server.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace DemoBlazorApp.Server.Entities
+namespace DemoBlazorApp.Server.Models.Services.Infrastructure
 {
     public partial class BlazorAppDbContext : DbContext
     {
