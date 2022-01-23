@@ -1,7 +1,8 @@
 ﻿@page "/modificapersona/{Id:int}"
 @using DemoBlazorApp.Client.Components
 @using DemoBlazorApp.Shared
-@using DemoBlazorApp.Shared.Models
+@using DemoBlazorApp.Shared.Models;
+@using DemoBlazorApp.Shared.Models.InputModels
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
@@ -25,11 +26,11 @@
 @code {
     [Parameter] public int Id { get; set; }
 
-    PersonaViewModel persona = new PersonaViewModel();
+    PersonaInputModel persona = new PersonaInputModel();
 
     protected async override Task OnParametersSetAsync()
     {
-        persona = await Http.GetFromJsonAsync<PersonaViewModel>($"api/persone/{Id}");
+        persona = await Http.GetFromJsonAsync<PersonaInputModel>($"api/persone/{Id}");
     }
 
     private async Task Modify()
