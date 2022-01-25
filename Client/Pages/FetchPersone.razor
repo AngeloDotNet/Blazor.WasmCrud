@@ -1,53 +1,70 @@
 ﻿@page "/fetchpersone"
-@using DemoBlazorApp.Shared.Models
-@using DemoBlazorApp.Shared.Models.ViewModels
 @inject HttpClient Http
 
 <h1>Rubrica</h1>
 
 <p>&nbsp;</p>
 
-@if (persone == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <p><a href="/aggiungipersona" class="btn btn-outline-primary">Nuovo</a></p>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th width="20%">Cognome</th>
-                <th width="20%">Nome</th>
-                <th width="20%">Email</th>
-                <th width="20%">Telefono</th>
-                <th width="20%"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in persone)
-            {
+<SpinnerLoader IsLoading="isLoading" HasError="hasError" Size="46px" AccentColor="#3498db" Color="White" Center="true" Spinner="SpinnerTemplate.Loader1">
+    <ContentTemplate>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@item.Cognome</td>
-                    <td>@item.Nome</td>
-                    <td>@item.Email</td>
-                    <td>@item.Telefono</td>
-                    <td><a href="/dettagliopersona/@item.PersonaId" class="btn btn-outline-secondary">Dettaglio</a> 
-                        <a href="/modificapersona/@item.PersonaId" class="btn btn-outline-warning">Modifica</a> 
-                        <a href="/cancellapersona/@item.PersonaId" class="btn btn-outline-danger">Cancella</a></td>
+                    <th width="20%">Cognome</th>
+                    <th width="20%">Nome</th>
+                    <th width="20%">Email</th>
+                    <th width="20%">Telefono</th>
+                    <th width="20%"></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var item in persone)
+                {
+                    <tr>
+                        <td>@item.Cognome</td>
+                        <td>@item.Nome</td>
+                        <td>@item.Email</td>
+                        <td>@item.Telefono</td>
+                        <td><a href="/dettagliopersona/@item.PersonaId" class="btn btn-outline-secondary">Dettaglio</a> 
+                            <a href="/modificapersona/@item.PersonaId" class="btn btn-outline-warning">Modifica</a> 
+                            <a href="/cancellapersona/@item.PersonaId" class="btn btn-outline-danger">Cancella</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </ContentTemplate>
+    <ErrorContentTemplate>
+        <tr>
+            <td colspan="4">
+                <div class="alert alert-danger">Loading failed</div>
+            </td>
+        </tr>
+    </ErrorContentTemplate>
+</SpinnerLoader>
 
 @code {
     List<PersonaViewModel> persone;
 
+    private bool hasError = false;
+    private bool isLoading = true;
+
     protected override async Task OnInitializedAsync()
     {
-        await LoadElenco();
+        isLoading = true;
+        await Task.Delay(5000);
+
+        try
+        {
+            await LoadElenco();
+        }
+        catch (Exception)
+        {
+            hasError = true;
+        }
+        finally
+        {
+            isLoading = false;
+        }
     }
 
     private async Task LoadElenco()
