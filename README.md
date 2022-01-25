@@ -1,8 +1,8 @@
 # Demo-BlazorApp-WebAssembly
 
-## Nuget package
+## Nuget package additional
 
-BlazorKit.Spinners - powered by E. Bartolesi
+BlazorKit.Spinners - by E. Bartolesi
 
 ## Scaffolding Database
 
