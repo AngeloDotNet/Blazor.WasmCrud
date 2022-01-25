@@ -1,6 +1,6 @@
 # Demo-BlazorApp-WebAssembly
 
-## Nuget package additional
+## Nuget Package Additional
 
 BlazorKit.Spinners - by E. Bartolesi
 
