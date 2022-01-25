@@ -1,5 +1,6 @@
-using DemoBlazorApp.Server.Entities;
+using DemoBlazorApp.Server.Models.Enums;
 using DemoBlazorApp.Server.Models.Services.Application.Persone;
+using DemoBlazorApp.Server.Models.Services.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

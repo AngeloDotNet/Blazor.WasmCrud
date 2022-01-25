@@ -1,5 +1,6 @@
-﻿using DemoBlazorApp.Server.Entities;
-using DemoBlazorApp.Shared.Models;
+﻿using DemoBlazorApp.Server.Models.Extensions;
+using DemoBlazorApp.Server.Models.Services.Infrastructure;
+using DemoBlazorApp.Shared.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -45,22 +46,32 @@ namespace DemoBlazorApp.Server.Models.Services.Application.Persone
 
         public async Task<PersonaViewModel> DatiPersona(int id)
         {
-            var item = await dbContext.Persone.FindAsync(id);
+            //var item = await dbContext.Persone.FindAsync(id);
 
-            PersonaViewModel persona = new();
+            //PersonaViewModel persona = new();
 
-            persona.PersonaId = item.PersonaId;
-            persona.Cognome = item.Cognome;
-            persona.Nome = item.Nome;
-            persona.Email = item.Email;
-            persona.Telefono = item.Telefono;
-            
-            return persona;
+            //persona.PersonaId = item.PersonaId;
+            //persona.Cognome = item.Cognome;
+            //persona.Nome = item.Nome;
+            //persona.Email = item.Email;
+            //persona.Telefono = item.Telefono;
+
+            //return persona;
+
+            IQueryable<PersonaViewModel> queryLinq = dbContext.Persone
+            .AsNoTracking()
+            .Where(persona => persona.PersonaId == id)
+            .Select(persona => persona.ToPersonaViewModel());
+
+            PersonaViewModel viewModel = await queryLinq.FirstOrDefaultAsync();
+
+            return viewModel;
         }
 
         public async Task ModificaPersona(PersonaViewModel persona)
         {
             var personaOld = await dbContext.Persone.FindAsync(persona.PersonaId);
+
             if (personaOld == null)
                 return;
 
@@ -68,12 +79,14 @@ namespace DemoBlazorApp.Server.Models.Services.Application.Persone
             personaOld.Cognome = persona.Cognome;
             personaOld.Email = persona.Email;
             personaOld.Nome = persona.Nome;
+
             await dbContext.SaveChangesAsync();
         }
 
         public async Task CancellaPersona(int id)
         {
             var personaOld = await dbContext.Persone.FindAsync(id);
+            
             if (personaOld == null)
                 return;
 

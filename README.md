@@ -1,5 +1,9 @@
 # Demo-BlazorApp-WebAssembly
 
+## Nuget Package Additional
+
+BlazorKit.Spinners - by E. Bartolesi
+
 ## Scaffolding Database
 
 To perform the scaffolding it is necessary to open the package management console and use the command Add-Migration NOME-MIGRATION
@@ -17,5 +21,5 @@ At the end of the scaffolding operations in your console you should have a resul
 
 ## Note
 
-This project was created using the Visual Studio 2022 Community Edition wizard, choosing the "App WebAssembly Blazor" project model, then choosing the .NET 5.0 framework, ticked the 3 flags below: 
+This project was created using the Visual Studio 2022 Community Edition wizard, choosing the "App WebAssembly Blazor" project model, then choosing the .NET 5.0 framework, ticked the 3 flags below:
 Configure for HTTPS, Hosted ASP.NET Core and Progressive Web Application)

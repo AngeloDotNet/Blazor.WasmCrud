@@ -1,4 +1,4 @@
-﻿using DemoBlazorApp.Shared.Models;
+﻿using DemoBlazorApp.Shared.Models.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

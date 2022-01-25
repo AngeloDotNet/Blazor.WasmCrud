@@ -1,5 +1,5 @@
 ﻿using DemoBlazorApp.Server.Models.Services.Application.Persone;
-using DemoBlazorApp.Shared.Models;
+using DemoBlazorApp.Shared.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
