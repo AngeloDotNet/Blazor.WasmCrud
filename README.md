@@ -1,8 +1,11 @@
-# Demo-BlazorApp-WebAssembly
+
+# Demo Blazor App WebAssembly
+
+Demo application developed in Blazor Web Assembly with the help of SQLite database
 
 ## Nuget Package Additional
 
-BlazorKit.Spinners - by E. Bartolesi
+- BlazorKit.Spinners - by E. Bartolesi
 
 ## Scaffolding Database
 
@@ -21,5 +24,8 @@ At the end of the scaffolding operations in your console you should have a resul
 
 ## Note
 
-This project was created using the Visual Studio 2022 Community Edition wizard, choosing the "App WebAssembly Blazor" project model, then choosing the .NET 5.0 framework, ticked the 3 flags below:
-Configure for HTTPS, Hosted ASP.NET Core and Progressive Web Application)
+This project was created using the Visual Studio 2022 Community Edition wizard, choosing the "App WebAssembly Blazor" project model, then choosing the .NET 5.0 framework, ticked the 3 flags below: Configure for HTTPS, Hosted ASP.NET Core and Progressive Web Application)
+
+## License
+
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
