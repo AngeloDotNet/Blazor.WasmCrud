@@ -32,9 +32,8 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/Server/DemoBlazorApp.Server.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "--project",
+                "${workspaceFolder}/Server/DemoBlazorApp.Server.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

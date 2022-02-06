@@ -31,9 +31,9 @@ namespace DemoBlazorApp.Server
                 opt.AddPolicy(name: _policyName, builder =>
                 {
                     builder.AllowAnyOrigin()
-                    .AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                 });
             });
 
